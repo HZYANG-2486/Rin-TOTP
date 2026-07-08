@@ -13,7 +13,7 @@ FluentWindow {
     height: 560
     minimumWidth: 600
     minimumHeight: 480
-    title: "PyTOTP Authenticator"
+    title: "Rin-TOTP"
 
     property bool isUnlocked: !Backend.isLocked
     property string pendingDeleteId: ""
