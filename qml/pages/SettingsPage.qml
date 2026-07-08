@@ -285,16 +285,36 @@ Item {
                         typography: Typography.Body
                         color: settingsPage._isDarkTheme() ? "#ffffff" : "#000000"
                     }
-                    SpinBox {
-                        id: offsetSpinBox
+                    RowLayout {
                         Layout.alignment: Qt.AlignRight
-                        from: -300
-                        to: 300
-                        value: Backend.timeOffset
-                        onValueChanged: Backend.timeOffset = value
-                        textFromValue: function(value) {
-                            if (value > 0) return "+" + value + " s"
-                            return value + " s"
+                        spacing: 4
+
+                        Button {
+                            text: "-"
+                            flat: true
+                            onClicked: {
+                                var newVal = Backend.timeOffset - 1
+                                if (newVal >= -300) Backend.timeOffset = newVal
+                            }
+                        }
+                        Text {
+                            text: {
+                                var v = Backend.timeOffset
+                                if (v > 0) return "+" + v + " s"
+                                return v + " s"
+                            }
+                            typography: Typography.Body
+                            color: settingsPage._isDarkTheme() ? "#ffffff" : "#000000"
+                            Layout.minimumWidth: 60
+                            horizontalAlignment: Text.AlignHCenter
+                        }
+                        Button {
+                            text: "+"
+                            flat: true
+                            onClicked: {
+                                var newVal = Backend.timeOffset + 1
+                                if (newVal <= 300) Backend.timeOffset = newVal
+                            }
                         }
                     }
                 }
@@ -373,10 +393,7 @@ Item {
                     Button {
                         text: settingsPage._t("settings.reset_time")
                         flat: true
-                        onClicked: {
-                            offsetSpinBox.value = 0
-                            Backend.timeOffset = 0
-                        }
+                        onClicked: Backend.timeOffset = 0
                     }
                 }
 
