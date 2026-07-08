@@ -26,6 +26,8 @@ pip install -r requirements.txt
 ``` 
 python app_qml.py
 ```
+<small>[main.py](main.py)是不基于QML的版本</small>
+
 ### 从预编译程序运行
 1. 在Releases中下载对应版本
 2. 运行!
